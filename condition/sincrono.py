@@ -10,6 +10,7 @@ from unittest import result
 # for x in data:
 # write_db(x.name)
 
+
 def get_service():
     urlPoke = 'https://pokeapi.co/api/v2/pokemon?limit=2308&offset=0'
     data = requests.get(urlPoke)
@@ -31,12 +32,14 @@ def write_db(namepokemon):
         port='3306'
     )
     mycursor = conexion.cursor()
-    sql = "INSERT INTO pokemones(namepokemon) VALUES ('{0}')".format(namepokemon)
+    sql = "INSERT INTO pokemones(namepokemon) VALUES ('{0}')".format(
+        namepokemon)
     mycursor.execute(sql)
     conexion.commit()
 
+
 if __name__ == "__main__":
-    init_time  = time.time();
+    init_time = time.time()
     get_service()
     end_time = time.time() - init_time
     print(end_time)
